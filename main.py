@@ -1,6 +1,6 @@
 from flask import Flask,render_template,redirect,url_for
 from flask_bootstrap import Bootstrap
-from forms import PlainText, MorseText
+from forms import PlainTextForm, MorseTextForm
 from alphabets import default_alphabet, morse_alphabet
 import os
 
@@ -13,8 +13,8 @@ Bootstrap(app)
 @app.route('/',methods=["GET","POST"])
 def home():
     # CREATE FORMS
-    form_plain = PlainText()
-    form_morse = MorseText()
+    form_plain = PlainTextForm()
+    form_morse = MorseTextForm()
 
 
     # TRANSLATION AND VALIDATION LOGIC
@@ -28,7 +28,7 @@ def home():
             translated += translated_letter
 
         translated = translated[:-1]
-        form_morse = MorseText(
+        form_morse = MorseTextForm(
             text_morse= translated
         )
         return render_template('index.html', form_plain=form_plain, form_morse=form_morse)
@@ -41,7 +41,7 @@ def home():
             translated_letter = default_alphabet[morse_alphabet.index(letter)]
             translated += translated_letter
         
-        form_plain = PlainText(
+        form_plain = PlainTextForm(
             text_plain=translated
         )
         return render_template('index.html', form_plain=form_plain, form_morse=form_morse)
