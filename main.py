@@ -45,9 +45,12 @@ def home():
         )
         return render_template('index.html', form_plain=form_plain, form_morse=form_morse)
 
-
-    print(translated)
     return render_template('index.html', form_plain=form_plain, form_morse=form_morse)
+    
+
+@app.route('/table')
+def table():
+    return render_template("table.html",morse_alphabet=morse_alphabet,default_alphabet=default_alphabet)
     
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

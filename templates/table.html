@@ -1,6 +1,3 @@
-
-
-{% import "bootstrap/wtf.html" as wtf%}
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,23 +25,38 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
-    <div class="container-fluid">
-        <h1 class="text-center title"><a href="{{url_for('home')}}">Text to Morse Converter</a> </h1>
-    </div>
-    <div class="row">
-        <div class="col col-lg-6 col-md-6 col-sm-6">
-            {{wtf.quick_form(form_plain, novalidate=True, button_map={"submit_plain": "primary"})}}
-        </div>
-        <div class="col col-lg-6 col-md-6 col-sm-6">
-            {{wtf.quick_form(form_morse, novalidate=True, button_map={"submit_morse": "primary"})}}
-        </div>
-    </div>
-    </div>
-    <footer>
-        <h3 class="text-center"><a href="https://github.com/dembskii"><i class="fa-brands fa-github icon-img"></i></a></h3>
-        <p class="text-center p-footer">&copyDembski 2022</p>
-    </footer>
-  </body>
-  
+<div class="container-fluid">
+    <h1 class="text-center title"><a href="{{url_for('home')}}">Text to Morse Converter</a> </h1>
+</div>
+<hr>
+<h3 class="text-center title">Symbols Comparison</h3>
+<br>
 
-</html>
+
+<table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Plain text</th>
+        <th scope="col">Morse code</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in range(default_alphabet|length)%}
+      <tr>
+        <th scope="row">{{i}}</th>
+        {% if default_alphabet[i] == " "%}
+            <td>SPACE</td>
+            <td>{{morse_alphabet[i]}}</td>
+        {% else %}
+            <td>{{default_alphabet[i]}}</td>
+            <td>{{morse_alphabet[i]}}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+  </table>
+</div>
+<footer>
+    <h3 class="text-center"><a href="https://github.com/dembskii"><i class="fa-brands fa-github icon-img"></i></a></h3>
+    <p class="text-center p-footer">&copyDembski 2022</p>
+</footer>
