@@ -13,12 +13,13 @@ a:link {
 
 .container-fluid {
     font-family: 'Roboto Mono', monospace;
+    padding: 3%;
 }
 
 #footer {
     position:absolute;
     bottom:0;
-    width:100%;
+    width:150%;
     height:60px;   /* Height of the footer */
     background:#095fe0;
  }
