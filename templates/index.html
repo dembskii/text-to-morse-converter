@@ -40,6 +40,13 @@
             {{wtf.quick_form(form_morse, novalidate=True, button_map={"submit_morse": "primary"})}}
         </div>
     </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {%for message in messages %}
+      <h6 class="title text-center" style="color: red;">{{message}}</h6>
+    {% endfor%}
+    {% endif %}
+    {% endwith %}
     <hr width="50%">
     
     <h3 class="text-center"><a href="{{url_for('table')}}">Check out symbols comparison</a></h3>
