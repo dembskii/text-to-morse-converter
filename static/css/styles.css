@@ -46,6 +46,11 @@ a:link {
     color: white;
 }
 
+/* Forms Validation */
+
+.help-block {
+    color:orange;
+}
 
 
 /* ::-webkit-scrollbar { 

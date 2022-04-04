@@ -20,7 +20,11 @@ def home():
 
     # TRANSLATION AND VALIDATION LOGIC
     translated=""
-    if form_plain.validate_on_submit():
+    """
+        if form.validate_on_submit():
+        can not be used because it validates both forms when both are empty
+    """
+    if form_plain.submit_plain.data and form_plain.validate():
         to_translate = form_plain.text_plain.data
         to_translate = to_translate.upper()
         
@@ -38,7 +42,7 @@ def home():
         )
         return render_template('index.html', form_plain=form_plain, form_morse=form_morse)
 
-    if form_morse.validate_on_submit():
+    if form_morse.submit_morse.data and form_morse.validate():
         to_translate = form_morse.text_morse.data
         to_translate = to_translate.upper().split(" ")
         
