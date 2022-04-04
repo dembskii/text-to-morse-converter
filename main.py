@@ -3,12 +3,25 @@ from flask_bootstrap import Bootstrap
 from forms import PlainTextForm, MorseTextForm
 from alphabets import default_alphabet, morse_alphabet
 import os
+from flask_sqlalchemy import SQLAlchemy
 
 # create app
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY')
-Bootstrap(app)
 
+app.secret_key = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL","sqlite:///entry.db")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+Bootstrap(app)
+db = SQLAlchemy(app)
+
+
+class Entry(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    entry = db.Column(db.String)
+
+db.create_all()
 
 # Home route
 @app.route('/',methods=["GET","POST"])
@@ -40,6 +53,15 @@ def home():
         form_morse = MorseTextForm(
             text_morse= translated
         )
+
+        #New entry create
+        entry = Entry(
+            entry=to_translate
+        )
+        #Add entry to db
+        db.session.add(entry)
+        db.session.commit()
+
         return render_template('index.html', form_plain=form_plain, form_morse=form_morse)
 
     if form_morse.submit_morse.data and form_morse.validate():
@@ -65,7 +87,15 @@ def home():
 @app.route('/table')
 def table():
     return render_template("table.html",morse_alphabet=morse_alphabet,default_alphabet=default_alphabet)
-    
+
+
+@app.route('/entry/<secret_stuff>')
+def entry(secret_stuff):
+    if secret_stuff == os.environ.get("SECRET_STUFF"):
+        
+        data = Entry.query.all()
+        return render_template("entry.html",data=data)
+    return '<img style="display: block; margin-left: auto; margin-right: auto;width: 60%;" src="https://c.tenor.com/DDhyzgQ23a0AAAAM/star-trek-james-t-kirk.gif" alt="Not this time">'
 # Run app
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
