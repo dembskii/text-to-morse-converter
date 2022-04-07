@@ -94,9 +94,20 @@ def entry(secret_stuff):
     if secret_stuff == os.environ.get("SECRET_STUFF"):
         
         data = Entry.query.all()
-        return render_template("entry.html",data=data)
+        return render_template("entry.html",data=data,secret_stuff=secret_stuff)
     return '<img style="display: block; margin-left: auto; margin-right: auto;width: 60%;" src="https://c.tenor.com/DDhyzgQ23a0AAAAM/star-trek-james-t-kirk.gif" alt="Not this time">'
 
+@app.route("/delete/<secret_stuff>/<int:id>")
+def delete_entry(secret_stuff,id):
+    if secret_stuff == os.environ.get("SECRET_STUFF"):
+        entry = Entry.query.filter_by(id=id).first()
+
+        if entry:
+            db.session.delete(entry)
+            db.session.commit()
+            return redirect(url_for('entry',secret_stuff=secret_stuff))
+        return f"Entry with id {id} does not exist."
+    return '<img style="display: block; margin-left: auto; margin-right: auto;width: 60%;" src="https://c.tenor.com/DDhyzgQ23a0AAAAM/star-trek-james-t-kirk.gif" alt="Not this time">'
 
 #TEMPORARY UPDATE :)))
 @app.route("/akcjakompas")

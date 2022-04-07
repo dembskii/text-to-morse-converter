@@ -18,7 +18,7 @@
     <tbody>
         {% for item in data %}
       <tr>
-        <th scope="row">{{item.id}}</th>
+        <th scope="row">{{item.id}} <a style="color: black" href="{{url_for('delete_entry',secret_stuff=secret_stuff,id=item.id)}}">  ❌ Del</a></th>
             <td>{{item.entry}}</td>
       </tr>
       {% endfor %}
