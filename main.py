@@ -109,10 +109,6 @@ def delete_entry(secret_stuff,id):
         return f"Entry with id {id} does not exist."
     return '<img style="display: block; margin-left: auto; margin-right: auto;width: 60%;" src="https://c.tenor.com/DDhyzgQ23a0AAAAM/star-trek-james-t-kirk.gif" alt="Not this time">'
 
-#TEMPORARY UPDATE :)))
-@app.route("/akcjakompas")
-def akcja_kompas():
-    return render_template("akcjakompas.html")
 
 # Run app
 if __name__ == "__main__":
