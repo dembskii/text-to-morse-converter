@@ -9,6 +9,8 @@ Hi! It's [my](https://github.com/dembskii) first public project on github. This 
 
 The benefit of Morse code lies in the flexibility of its usage. Morse code can be used with any signal as a medium, ranging from sounds,light sources to tapping. Some internationally known signals, such as 'SOS', can be conveyed through morse code. While the need for morse code has reduced due to advances in communication technology, morse code remains relevant and can be used as discreet means of communication, or even by those incapbale of speech.
 
+![International_Morse_Code svg](https://user-images.githubusercontent.com/56427665/163046633-b5391e8e-8f28-457f-a540-fd03cf55a8eb.png)
+
 # How is the translation going?
 There is two lists that contain alphabet and morse translated alphabet, both in same order so It is pretty simple to translate.
 
