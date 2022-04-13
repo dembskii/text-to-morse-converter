@@ -11,6 +11,9 @@ footer{
     background-color: #095fe0;
 }
 
+h1{
+    font-weight: 900;
+}
 /* Title headings */
 
 .title {
@@ -29,6 +32,31 @@ a:link {
     padding: 3%;
 }
 
+/* Body */
+
+.header {
+    font-family: 'Roboto Mono', monospace;
+    color: #095fe0;
+}
+
+
+.info {
+    margin-left: 10%;
+    margin-right: 10%;
+    line-height: 2rem;
+}
+
+.rounded-corners {
+    border-radius: 30px;
+    padding: 10px;
+    border: 2px solid #095fe0;
+
+}
+
+.a-source {
+    color: black;
+    font-weight: 100;
+}
 /* Row */
 .col {
     padding: 2%;
