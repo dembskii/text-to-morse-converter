@@ -41,17 +41,12 @@ a:link {
 
 
 .info {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 3%;
+    margin-right: 3%;
     line-height: 2rem;
 }
 
-.rounded-corners {
-    border-radius: 30px;
-    padding: 10px;
-    border: 2px solid #095fe0;
 
-}
 
 .a-source {
     color: black;
